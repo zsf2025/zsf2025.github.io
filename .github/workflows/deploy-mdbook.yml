@@ -1,5 +1,6 @@
 name: Deploy mdBook to GitHub Pages
 
+
 # 触发条件：当推送到 main 分支（或 master 分支，根据你的主分支名修改）时执行
 on:
   push:
@@ -20,6 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的默认 token 进行认证
           fetch-depth: 0  # 拉取完整历史（避免编译时缺失文件）
 
       # 步骤 2：安装 Rust 环境（mdBook 依赖 Rust）
