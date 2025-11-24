@@ -39,7 +39,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4  # 成熟的 Pages 部署工具
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # 自动获取 GitHub 仓库的访问令牌
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book  # 要部署的静态文件目录（mdBook 编译输出目录）
           publish_branch: gh-pages  # 部署到的分支
           force_orphan: true  # 强制创建孤立分支（避免历史冲突）
