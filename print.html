@@ -1,0 +1,1048 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>前端开发者的rust迷你书</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-82d9ba75.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-3e24755d.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">前端开发者的rust迷你书</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="前端开发者的rust迷你书"><a class="header" href="#前端开发者的rust迷你书">《前端开发者的Rust迷你书》</a></h1>
+<p>这个是一本为前端人员量身定的Rust迷你电子书，我会大量使用Javascript/Typescript作为类比，通过“对比学习法”来帮助你理解Rust的核心概念。</p>
+<p>为了“深入浅出”，我们不需要一开始就背诵复杂语法，而是通过一个个具体的场景来学习。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="变量默认的偏执"><a class="header" href="#变量默认的偏执">变量–默认的“偏执”</a></h1>
+<p>作为前端开发者，我们习惯了这样的思维模式：</p>
+<ul>
+<li>用<code>const</code>声明<strong>不会</strong>被重新赋值的变量。</li>
+<li>用<code>let</code>声明<strong>会</strong>被修改的变量。</li>
+</ul>
+<p>在 Rust 里，这个直觉会被稍微颠覆一下。</p>
+<h2 id="1-let的谎言"><a class="header" href="#1-let的谎言">1. <code>let</code>的“谎言”</a></h2>
+<p>在 JavaScript 中，<code>let</code> 代表 “Let me change this later”（允许我稍后修改它）。 但在 Rust 中，<code>let</code> 默认居然是**不可变(Immutable)**的！</p>
+<p>看看这段代码：</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let salary = 10000; // 定义薪水
+    salary = 15000;     // 涨薪！
+    println!("现在的薪水是: {}", salary);
+}</code></pre>
+<p>如果你尝试运行这段代码，Rust 编译器会直接给你一个红色的报错。它会告诉你：<strong>“你不能对不可变变量<code>salary</code>赋值两次。”</strong></p>
+<h2 id="2-mut开启修改权限"><a class="header" href="#2-mut开启修改权限">2. <code>mut</code>–开启“修改权限”</a></h2>
+<p>如果你真的想让变量像 JS 的 <code>let</code> 一样可以修改，你需要显式地告诉编译器：<strong>“嘿，这个变量我要改。”</strong></p>
+<p>你需要加上 <code>mut</code> (mutable) 关键字：</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut salary = 10000; // 注意这里的 mut
+    salary = 15000;         // ✅ 编译器：好的，这很合理。
+    println!("现在的薪水是: {}", salary);
+}</code></pre>
+<h2 id="-随堂小测验"><a class="header" href="#-随堂小测验">🧠 随堂小测验</a></h2>
+<p>为了确认你掌握了这个核心思维转换，请看下面这段简单的 Rust 代码（假设这是个计算器应用的一部分）：</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let result = 0;
+    let factor = 2;
+    
+    result = 10 * factor;
+    
+    println!("结果是: {}", result);
+}</code></pre>
+<p><strong>问题：</strong> 这段代码会报错吗？如果是，<strong>哪一行</strong>会报错？你应该<strong>添加</strong>什么关键字来修复它？</p>
+<h2 id="答案"><a class="header" href="#答案">答案</a></h2>
+<p>会报错，报错在第5行。你需要添加 <code>mut</code> 关键字来修复它：</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let mut result = 0;
+    let factor = 2;
+    
+    result = 10 * factor;
+    
+    println!("结果是: {}", result);
+}</code></pre>
+<p>加上 <code>mut</code> 关键字后，<code>result</code>就获得了“可变性”权限。这在Rust中是一个显式的决定，而在JS中是<code>let</code>默认赋予的。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="数据类型告别number一把梭"><a class="header" href="#数据类型告别number一把梭">数据类型–告别“number”一把梭</a></h1>
+<p>在 TypeScript/JavaScript 中，我们定义数字通常极其简单：</p>
+<pre><code class="language-TypeScript">// TS
+let age: number = 25;
+let salary: number = 10000.50;
+</code></pre>
+<p>不管是整数、小数、正数、负数，TS 统统用<code>number</code>搞定（实际上是双精度浮点数）。</p>
+<p>但在 Rust 里，为了追求极致的性能和内存控制，这就不够用了。Rust 要求你把数据放进<strong>最合适</strong>的格子里。</p>
+<p>我们先来看看最常用的两种数字类型：</p>
+<ol>
+<li>
+<p><strong>有符号整数 (Signed Integers)：</strong> 以 <code>i</code> 开头（integer）。</p>
+<ul>
+<li>
+<p>可以存<strong>负数</strong>。</p>
+</li>
+<li>
+<p>例如：<code>i32</code> (32位整数, Rust 的默认整数类型), <code>i64</code>, <code>i8</code>等。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>无符号整数 (Unsigned Integers)：</strong> 以 <code>u</code> 开头（unsigned）。</p>
+<ul>
+<li>
+<p><strong>只能</strong>存正数（和零）。</p>
+</li>
+<li>
+<p>例如：<code>u32</code>, <code>u64</code>, <code>u8</code> 等。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>💡 记忆口诀：</strong><code>i</code> 是包含负数 (internet 喷子多，有负能量)，<code>u</code> 是只有正数 (you are positive, 你很正能量)。</p>
+<h2 id="类型系统的严格-strictness"><a class="header" href="#类型系统的严格-strictness">类型系统的“严格” (Strictness)</a></h2>
+<p>在这里，我们需要聊聊 Rust 和 TypeScript 最大的不同。</p>
+<p>在 TS 里，你可能习惯了这种操作（虽然不推荐，但它是合法的 JS）：</p>
+<pre><code class="language-TypeScript">// TypeScript
+let age: number = 25;
+let year: number = 2023;
+// 只要都是 number，随便减
+let birth = year - age;
+</code></pre>
+<p>但是在 Rust 里，类型检查是<strong>极其严格</strong>的。就算它们都是“数字”，如果“位宽”或“符号”不一样，它们就<strong>不能</strong>直接进行运算。</p>
+<p>来看看这段代码：</p>
+<pre><code class="language-Rust">fn main() {
+    let age: u8 = 25;       // 你选择的 u8
+    let year: i32 = 2023;   // 默认是 i32
+    
+    // 试图把 u8 和 i32 相减
+    let birth_year = year - age;
+    
+    println!("出生年份: {}", birth_year);
+}
+</code></pre>
+<p>由于 <code>age</code> 是 <code>u8</code>，而 <code>year</code> 是 <code>i32</code>，Rust 编译器会报错，拒绝编译。它不会像 JS 那样自动帮你转换类型。</p>
+<p><strong>挑战</strong>： 为了让这段代码跑通，我们需要把 <code>age</code> 转换成和 <code>year</code> 一样的类型。在 Rust 中，我们使用 <code>as</code> 关键字来进行显式类型转换。</p>
+<p>你能猜出怎么修改 <code>let birth_year = year - age;</code> 这一行吗？</p>
+<p>(提示：这有点像 TypeScript 的 <code>as number</code>，但你需要指定具体的 Rust 类型)</p>
+<h2 id="答案-1"><a class="header" href="#答案-1">答案</a></h2>
+<pre><code class="language-Rust">let birth_year = year - age as i32;
+</code></pre>
+<p>通过 <code>as i32</code>，你显式地把 <code>u8</code> 类型的 <code>age</code> 转换成了 <code>i32</code>，这样它就可以和 <code>year</code> 愉快地相减了。</p>
+<h2 id="这里的关键点"><a class="header" href="#这里的关键点">💡这里的关键点</a></h2>
+<ul>
+<li>
+<p><strong>显式转换 (Explicit Casting)：</strong> JavaScript 经常会在后台偷偷帮你做类型转换（比如字符串加数字），这被称为“隐式转换”。Rust 为了安全，拒绝任何隐式转换。如果你想变，你必须用代码（<code>as</code>）画押签字。</p>
+</li>
+<li>
+<p><strong>安全隐患：</strong> 虽然 <code>u8</code> 转 <code>i32</code> 是安全的（小盒子装进大盒子），但反过来（大转小）可能会导致数据截断（Truncation）。Rust 把这个控制权交给了你，这意味着你得清楚自己在做什么。</p>
+</li>
+</ul>
+<h2 id="第一章通过"><a class="header" href="#第一章通过">🎉第一章通过！</a></h2>
+<p>恭喜你完成了 Rust 基础的第一步。我们这一章学到了：</p>
+<ol>
+<li>
+<p><strong>变量默认不可变</strong> (<code>let</code>)，想改要加 <code>mut</code>。</p>
+</li>
+<li>
+<p><strong>类型更细分</strong> (<code>i32</code> vs <code>u8</code>)，根据数据实际情况选择“容器”。</p>
+</li>
+<li>
+<p><strong>严苛的运算规则</strong>，不同类型不能直接算，必须手动 <code>as</code>。</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="所有权-ownership--内存管理的第三条路"><a class="header" href="#所有权-ownership--内存管理的第三条路">所有权 (Ownership) —— 内存管理的“第三条路”</a></h1>
+<p>准备好了吗？我们要进入 Rust <strong>最核心、也是最难</strong> 的概念了。</p>
+<p>在编程世界里，管理内存通常只有两种流派：</p>
+<ol>
+<li><strong>手动挡 (C/C++)：</strong> 你自己分配 (malloc)，自己释放 (free)。</li>
+</ol>
+<ul>
+<li>优点： 极快。</li>
+<li>缺点： 容易忘，导致内存泄漏；或者释放早了，导致程序崩溃。</li>
+</ul>
+<ol start="2">
+<li><strong>自动挡 (JS/Java/Python)：</strong> 有个叫 <strong>垃圾回收 (Garbage Collector, GC)</strong> 的东西在后台一直跑，帮你盯着不再用的内存并回收。</li>
+</ol>
+<ul>
+<li>优点： 省心，开发快。</li>
+<li>缺点： GC 运行的时候会占用资源，甚至造成程序卡顿 (Stop-the-world)。</li>
+</ul>
+<p><strong>Rust 选择了第三条路：</strong> 既没有 GC，也不用你手动 <code>free</code>。</p>
+<p>它靠的是 <strong>“所有权规则” (Ownership Rules)。</strong></p>
+<h2 id="场景模拟送礼物"><a class="header" href="#场景模拟送礼物">场景模拟：送礼物</a></h2>
+<p>为了理解这个，我们先看一段 JS 代码：</p>
+<pre><code class="language-JavaScript">// JavaScript
+let gift1 = { item: "Book" };
+let gift2 = gift1; // 把 gift1 赋值给 gift2
+
+console.log(gift1); // { item: "Book" }
+console.log(gift2); // { item: "Book" }
+</code></pre>
+<p>在 JS 里，<code>gift1</code> 和 <code>gift2</code> 就像两张 **只有地址的门卡，**它们都指向内存里的同一个 <code>{ item: "Book" }</code> 对象。这完全没问题。</p>
+<p>现在，让我们看看同样的逻辑在 Rust 里会发生什么。</p>
+<pre><code class="language-Rust">// Rust
+fn main() {
+    let gift1 = String::from("Book"); // 创建一个 String (分配在堆上)
+    let gift2 = gift1;                // 赋值给 gift2
+    
+    // 下面这行会报错！
+    println!("Gift 1 is: {}", gift1); 
+}
+</code></pre>
+<p>Rust 会告诉你：<code>gift1</code> <strong>已经失效了（moved）！</strong></p>
+<h2 id="这就引出了所有权的第一条规则"><a class="header" href="#这就引出了所有权的第一条规则">这就引出了所有权的第一条规则：</a></h2>
+<p>任何时候，一个值只能有一个 <strong>所有者 (Owner)。</strong></p>
+<p>当你把 <code>gift1</code> 赋值给 <code>gift2</code> 时，Rust 认为你把这个值的“所有权”<strong>转移</strong>给了 <code>gift2</code>。既然 <code>gift2</code> 是新的主人，<code>gift1</code> 就变成废纸了。</p>
+<h2 id="思考题"><a class="header" href="#思考题">思考题</a></h2>
+<p>既然 Rust 这么做是为了内存安全（避免两个变量同时操控同一块内存导致混乱），那么在这个例子中，如果我就想让 <code>gift1</code> 和 <code>gift2</code> 都拥有这个 “Book” 数据的副本（也就是说，我想复印一份，而不是转让），让两个变量都能独立使用，你觉得应该怎么做？</p>
+<p>（提示：在 JS 里如果你想深拷贝一个对象，你会怎么做？Rust 里有一个类似 <code>clone</code> 的概念。）</p>
+<h2 id="答案-2"><a class="header" href="#答案-2">答案</a></h2>
+<pre><code class="language-Rust">let gift2 = gift1.clone();
+</code></pre>
+<p>这一招 <code>clone()</code> 就是 Rust 里的 <strong>“深拷贝” (Deep Copy)。</strong> 现在，堆内存里真的有<strong>两本书</strong>了。<code>gift1</code> 和 <code>gift2</code> 各自拥有独立的数据，互不干扰。</p>
+<ul>
+<li>
+<p>**JS 对比：**这就像你用 <code>JSON.parse(JSON.stringify(obj))</code> 或者 lodash 的 <code>_.cloneDeep(obj)</code> 把对象彻底复制了一份。</p>
+</li>
+<li>
+<p>**代价：**就像在现实中复印一本书一样，<code>clone()</code> 是消耗资源（时间和内存）的。如果数据很大，频繁 clone 会让程序变慢。</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="借用-borrowing--省钱又省力的-引用"><a class="header" href="#借用-borrowing--省钱又省力的-引用">借用 (Borrowing) —— 省钱又省力的 “引用”</a></h1>
+<p>这就引出了我们的下一个痛点：</p>
+<p>如果我只是想让你<strong>看一眼</strong>我的礼物（读取数据），而不是送给你（移交所有权），也没必要专门去复印一份（Clone），该怎么办？</p>
+<p>在 Rust 里，这叫 <strong>借用 (Borrowing)。</strong> 我们会用到一个符号：<code>&amp;</code>。</p>
+<h3 id="前端视角的类比"><a class="header" href="#前端视角的类比">前端视角的类比</a></h3>
+<p>在 JavaScript 里，当你把对象传给函数时，默认就是传引用（你可以修改原对象）。 但在 Rust 里：</p>
+<ol>
+<li>直接传值 = <strong>移交所有权 (Move)</strong> （变量这之后就废了）。</li>
+<li>传 &amp; = <strong>借用 (Borrow)</strong> （只是借你看，看完还我）。</li>
+</ol>
+<p>来看看这个例子：</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let my_gift = String::from("iPhone");
+
+    // ❌ 错误做法：直接传值
+    // show_gift(my_gift); 
+    // 运行完上一行，my_gift 的所有权就被 show_gift 函数拿走了！
+    // 这里再想用 my_gift 就会报错。
+
+    // ✅ 正确做法：传引用（借给它）
+    show_gift(&amp;my_gift); 
+
+    // 因为只是"借"出去，现在我还能接着用
+    println!("太好了，{} 还在我手里！", my_gift);
+}
+
+// 注意函数的参数类型，多了一个 &amp;
+fn show_gift(item: &amp;String) {
+    println!("我看了一眼，这是：{}", item);
+}</code></pre>
+<p>发现了吗？我们只做了两个微小的改动：</p>
+<ol>
+<li>传参时加了 <code>&amp;：&amp;my_gift</code></li>
+<li>接收类型加了 <code>&amp;：&amp;String</code></li>
+</ol>
+<h2 id="-随堂小测验-1"><a class="header" href="#-随堂小测验-1">🧠 随堂小测验</a></h2>
+<p>借用虽然好，但别忘了 Rust 的第一章：<strong>默认不可变。</strong> 当你使用 <code>&amp;my_gift</code> 借出数据时，默认是<strong>只读</strong>的（Read-only）。借书的人不能在书上乱涂乱画。</p>
+<p>假设我想写一个函数，不仅要借用变量，还要<strong>修改</strong>它（比如给字符串后面追加内容）。</p>
+<p>结合我们在第一章学到的知识（关于如何让变量可变），你觉得应该怎么组合这两个概念？</p>
+<p><strong>猜猜看：</strong> 如果 &amp;String 是“不可变引用”，那么 <strong>“可变引用”</strong> (Mutable Reference) 应该怎么写？</p>
+<p>A. <code>mut &amp;String</code> B. <code>&amp;mut String</code> C. <code>&amp;String mut</code></p>
+<h2 id="-答案就是-b-mut-string"><a class="header" href="#-答案就是-b-mut-string">🎉 答案就是 B: &amp;mut String</a></h2>
+<p>你现在的 Rust 语感已经很好了。这一章我们把最难啃的骨头啃下来了，为了巩固一下，我们来看一个完整的“可变借用”例子。</p>
+<h2 id="可变借用实战"><a class="header" href="#可变借用实战">可变借用实战</a></h2>
+<p>这里有一个常见的误区：要想借出去修改，首先<strong>原主</strong>自己得有修改权。</p>
+<ol>
+<li>变量本身必须是 <code>mut</code> 的。</li>
+<li>传递的时候要传 <code>&amp;mut</code>。</li>
+<li>接收的时候要接 <code>&amp;mut</code>。</li>
+</ol>
+<pre><code class="language-RUST">fn main() {
+    // 1. 变量本身必须是 mut
+    let mut my_string = String::from("Hello");
+
+    // 2. 传参时使用 &amp;mut
+    add_world(&amp;mut my_string);
+
+    println!("修改后的字符串: {}", my_string); // 输出: Hello, World
+}
+
+// 3. 函数签名接收 &amp;mut String
+fn add_world(s: &amp;mut String) {
+    s.push_str(", World"); // 修改了借来的数据
+}
+</code></pre>
+<h2 id="-借用规则的高压线-the-golden-rules"><a class="header" href="#-借用规则的高压线-the-golden-rules">⚠️ 借用规则的“高压线” (The Golden Rules)</a></h2>
+<p>虽然 <code>&amp;mut</code> 很强大，但 Rust 编译器是一个极其严格的管理员。为了防止数据竞争 (Data Race)（也就是前端常遇到的：我在渲染列表，结果后台把列表清空了，导致页面白屏崩溃），Rust 定下了两条铁律：</p>
+<p>在任意时刻，针对同一个数据，你<strong>只能</strong>满足以下二者之一：</p>
+<ol>
+<li>拥有 <strong>任意数量</strong> 的不可变引用 (&amp;T)</li>
+<li>拥有 <strong>仅仅一个</strong> 可变引用 (&amp;mut T)</li>
+</ol>
+<p><strong>❌ 绝对不能同时存在！</strong></p>
+<pre><code class="language-RUST">let mut s = String::from("hello");
+
+let r1 = &amp;s; // ✅ OK
+let r2 = &amp;s; // ✅ OK
+let r3 = &amp;mut s; // ❌ 报错！！！！！
+
+// 报错原因：r1 和 r2还在用呢（只读），你这边 r3 居然要去改它？
+// 万一 r1 读到一半，r3 把数据改了怎么办？不安全！
+println!("{}, {}, and {}", r1, r2, r3);
+</code></pre>
+<p>这个报错是很多 Rust 新手的噩梦，但它的初衷是保护你的程序不出现诡异的 Bug。</p>
+<h2 id="-第二章通关"><a class="header" href="#-第二章通关">🎉 第二章通关！</a></h2>
+<p>目前为止，我们已经搞定了：</p>
+<ol>
+<li><strong>变量与类型：</strong> <code>let</code>, <code>mut</code>, <code>i32</code> vs <code>u8</code>。</li>
+<li><strong>内存安全：</strong> 所有权 (<code>Move</code>)，克隆 (<code>Clone</code>)，不可变借用 (<code>&amp;</code>)，可变借用 (<code>&amp;mut</code>)。</li>
+</ol>
+<p>你现在已经掌握了 Rust 语法的 60% 核心难度！剩下的很多是应用层面的东西。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="工具链-cargo--超越-npm-的存在"><a class="header" href="#工具链-cargo--超越-npm-的存在">工具链 (Cargo) —— 超越 NPM 的存在</a></h1>
+<p>写了这么多代码片段，是时候把它们变成一个真正的项目了。</p>
+<p>作为前端，如果你没有 <code>npm</code> 或 <code>yarn/pnpm</code>，你会觉得寸步难行。 在 Rust 世界，我们有 <strong>Cargo</strong>。</p>
+<p>Cargo 不仅仅是包管理器（像 npm），它还是：</p>
+<ul>
+<li>构建工具（像 webpack/vite）</li>
+<li>测试运行器（像 jest/vitest）</li>
+<li>文档生成器</li>
+<li>项目脚手架</li>
+</ul>
+<h2 id="1-初始化项目对比"><a class="header" href="#1-初始化项目对比">1. 初始化项目对比</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>动作</th><th>前端(npm)</th><th>Rust(Cargo)</th></tr>
+</thead>
+<tbody>
+<tr><td>初始化</td><td><code>npm init -y</code></td><td><code>cargo new my_project</code></td></tr>
+<tr><td>添加依赖</td><td><code>npm install serde</code></td><td><code>cargo add serde</code></td></tr>
+<tr><td>运行项目</td><td><code>npm start(需配置script)</code></td><td><code>cargo run</code></td></tr>
+<tr><td>构建项目</td><td><code>npm run build</code></td><td><code>cargo build --release</code></td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-cargotoml-vs-packagejson"><a class="header" href="#2-cargotoml-vs-packagejson">2. <code>Cargo.toml</code> vs <code>package.json</code></a></h2>
+<p>当你运行 <code>cargo new hello_rust</code> 后，你会看到一个 <code>Cargo.toml</code> 文件。它就是 Rust 版的 <code>package.json</code>。</p>
+<pre><code class="language-TOML">[package]
+name = "hello_rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# 这里添加依赖
+serde = "1.0"  # 类似于 JSON 处理库
+</code></pre>
+<p>看起来非常眼熟，对吧？</p>
+<h2 id="3-依赖管理的爽点"><a class="header" href="#3-依赖管理的爽点">3. 依赖管理的爽点</a></h2>
+<p>前端最头疼的是什么？<code>node_modules</code> 黑洞！ Rust 的依赖管理机制虽然也会下载依赖，但它有几个让前端羡慕的特点：</p>
+<ol>
+<li><strong>一致性：</strong> <code>Cargo.lock</code> (类似 <code>package-lock.json</code>) 锁版本非常严格，几乎不会出现“我本地能跑，线上跑不起来”的情况。</li>
+<li><strong>全局缓存：</strong> 不同项目依赖同一个版本的库，Cargo 可能会复用磁盘上的编译产物，而不是每个项目都复制一份巨大的 <code>node_modules</code>。</li>
+</ol>
+<h2 id="随堂小测验实操题"><a class="header" href="#随堂小测验实操题">随堂小测验（实操题）</a></h2>
+<p>假设你现在要在电脑上新建一个 Rust 项目，并且运行它。</p>
+<p>在终端里，你应该依次输入哪两条命令？</p>
+<ol>
+<li>创建名为 <code>demo</code> 的项目。</li>
+<li>进入目录并把代码跑起来。</li>
+</ol>
+<p>(这不需要写代码，只需要写出终端命令)</p>
+<p>这章节很简单，恭喜你，我们完成了 <strong>第一阶段：基础语法与工具链 (MVP)！</strong> 🚀 现在的你已经能够写出简单的、线性的 Rust 程序了。</p>
+<p>接下来我们要进入 <strong>第二阶段：进阶数据结构。</strong> 这一部分是 Rust 真正开始展现魅力，也是让很多前端开发者大呼“如果 JS 也能这样就好了”的地方。</p>
+<p>我们翻开第四章！</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="结构体与枚举--数据的骨架"><a class="header" href="#结构体与枚举--数据的骨架">结构体与枚举 —— 数据的“骨架”</a></h1>
+<p>在前端开发中，我们每天都在和 <code>Object</code>（对象）打交道。</p>
+<pre><code class="language-TypeScript">// TypeScript
+interface User {
+  username: string;
+  email: string;
+  active: boolean;
+}
+
+const user = { username: "Gemini", email: "ai@google.com", active: true };
+</code></pre>
+<p>在 Rust 中，这叫 <strong>Struct (结构体)。</strong></p>
+<h2 id="1-struct更严格的对象"><a class="header" href="#1-struct更严格的对象">1. Struct：更严格的对象</a></h2>
+<p>语法几乎一模一样，只是把 <code>interface</code> 换成了 <code>struct</code>，把 <code>const</code> 换成了 <code>let</code>。</p>
+<pre class="playground"><code class="language-rust">struct User {
+    username: String,
+    email: String,
+    active: bool, // Rust 的布尔值叫 bool
+}
+
+fn main() {
+    // 实例化 Struct
+    let user1 = User {
+        username: String::from("Gemini"),
+        email: String::from("ai@google.com"),
+        active: true,
+    };
+
+    println!("User: {}", user1.username);
+}</code></pre>
+<p><strong>最大的区别：</strong> 在 JS 里，你可以随时给对象追加属性 (<code>user.isAdmin = true</code>)。 在 Rust 里，<strong>不行</strong>。Struct 的形状在定义时就锁死了，既不能多，也不能少。</p>
+<h2 id="2-enumrust-的杀手锏"><a class="header" href="#2-enumrust-的杀手锏">2. Enum：Rust 的“杀手锏”</a></h2>
+<p>这是本章的重头戏。</p>
+<p>在 TypeScript 中，枚举 (Enum) 通常只是一组常量数字或字符串的映射：</p>
+<pre><code class="language-TypeScript">// TypeScript
+enum Status {
+  Pending,
+  Success,
+  Failed
+}
+// 很难携带额外数据，除非你再定义一堆 Interface 配合 Union Types
+</code></pre>
+<p>但在 Rust 中，<strong>枚举可以携带数据！</strong> 这让它变得极其强大，特别适合用来描述 <strong>“状态”</strong> 或者 <strong>“事件”</strong>。</p>
+<p>想象一下你在写一个 Redux reducer，你有不同的 Action。有的 Action 不需要参数，有的需要字符串，有的需要对象。</p>
+<p>在 Rust 里，我们可以把它们统统塞进一个 Enum：</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum WebEvent {
+    // 1. 没有任何数据的单元 (像 TS 的 Enum)
+    PageLoad, 
+    
+    // 2. 包含一个 String 的变体
+    PageUnload(String), 
+    
+    // 3. 包含两个数字的变体 (比如坐标)
+    KeyPress(char),
+    
+    // 4. 甚至可以包含像 Struct 一样的命名数据
+    Click { x: i64, y: i64 }, 
+}
+<span class="boring">}</span></code></pre>
+<p>看懂了吗？<code>PageLoad</code> 只是个信号；但 <code>Click</code> 里面竟然直接打包了 <code>x</code> 和 <code>y</code> 坐标数据！
+这意味着一个 <code>WebEvent</code> 类型的变量，可能是个简单的 <code>PageLoad</code>，也可能是个复杂的 <code>Click</code> 对象。这在处理复杂业务逻辑时非常优雅。</p>
+<h2 id="-随堂小测验-2"><a class="header" href="#-随堂小测验-2">🧠 随堂小测验</a></h2>
+<p>我们将 Struct 和 Enum 结合起来做一个小练习。</p>
+<p>假设我们在做一个 <strong>“消息通知系统”</strong>。 我们需要定义一个枚举 <code>Message</code>，它有两种可能的情况：</p>
+<ol>
+<li><strong>Quit</strong>：退出（没有关联数据）。</li>
+<li><strong>Write</strong>：写入消息（关联一个 <code>String</code> 字符串）。</li>
+</ol>
+<p>请根据上面的 <code>WebEvent</code> 例子，把下面的代码补充完整：</p>
+<pre class="playground"><code class="language-rust">enum Message {
+    Quit,
+    // 👇 请在这里补充 Write 变体，让它能携带一个 String
+    ___________
+}
+
+fn main() {
+    let msg = Message::Write(String::from("Hello Rust"));
+}</code></pre>
+<p>请写出空白处应该填入的代码。</p>
+<h2 id="答案-3"><a class="header" href="#答案-3">答案</a></h2>
+<p>🥳 Write(String)</p>
+<p>这种写法叫做 <strong>Tuple Variant</strong> (元组变体)。你就像给这个枚举贴了个标签，顺便塞进去了一个数据包。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="模式匹配-match--吃了大力丸的-switch"><a class="header" href="#模式匹配-match--吃了大力丸的-switch">模式匹配 (match) —— 吃了“大力丸”的 switch</a></h1>
+<p>现在我们有了携带不同数据的 Enum，问题来了：<strong>我们怎么把数据取出来用呢？</strong></p>
+<p>在 JavaScript 里，你可能会写一堆 <code>if (event.type === 'click')</code> 或者 <code>switch</code> 语句。 在 Rust 里，我们有 <code>match</code>。</p>
+<p><code>match</code> 是 Rust 中最强大的控制流运算符。它看起来像 <code>switch</code>，但实际上它是一个 <strong>“瑞士军“刀级别的解构工具</strong>。</p>
+<h2 id="1-基本语法"><a class="header" href="#1-基本语法">1. 基本语法</a></h2>
+<p>接上章的 <code>Message</code> 枚举例子：</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Message {
+    Quit,
+    Write(String),
+    Move { x: i32, y: i32 }, // 再加一个结构体风格的变体
+}
+
+fn process_message(msg: Message) {
+    match msg {
+        // 1. 匹配 Quit，没有任何数据
+        Message::Quit =&gt; {
+            println!("正在退出...");
+        },
+        
+        // 2. 匹配 Write，并把里面的 String 解构出来赋值给 text
+        Message::Write(text) =&gt; {
+            println!("收到消息: {}", text);
+        },
+        
+        // 3. 匹配 Move，把 x 和 y 解构出来
+        Message::Move { x, y } =&gt; {
+            println!("移动到坐标: ({}, {})", x, y);
+        }
+    }
+}
+<span class="boring">}</span></code></pre>
+<p><strong>它的超能力：</strong></p>
+<ol>
+<li>
+<p><strong>解构 (Destructuring)：</strong> 注意看<code> Message::Write(text)</code>，我们直接在匹配的同时定义了 <code>text</code> 变量，把枚举里的数据“拿”了出来。</p>
+</li>
+<li>
+<p><strong>穷尽性检查 (Exhaustiveness Checking)：</strong> 这是前端最馋的功能！如果你漏掉了一个 case（比如你忘了处理 <code>Move</code>），Rust 编译时直接报错。它逼着你处理所有可能的情况，杜绝了 “Unhandled case” 导致的 Bug。</p>
+</li>
+</ol>
+<h2 id="2-通配符-_-the-placeholder"><a class="header" href="#2-通配符-_-the-placeholder">2. 通配符 <code>_ </code>(The Placeholder)</a></h2>
+<p>有时候枚举有很多种情况，但我们只想处理其中一种，其他的统一忽略。 这时候可以用 <code>_ </code>(下划线)，相当于 JS switch 里的 <code>default</code>。</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let number = 7;
+
+match number {
+    1 =&gt; println!("是第一名!"),
+    // 处理其他所有情况
+    _ =&gt; println!("不是第一名，下次加油"), 
+}
+<span class="boring">}</span></code></pre>
+<h2 id="-随堂小测验-3"><a class="header" href="#-随堂小测验-3">🧠 随堂小测验</a></h2>
+<p>假设你在做一个 <strong>红绿灯</strong> 系统。</p>
+<pre><code class="language-RUST">enum TrafficLight {
+    Red,
+    Green,
+    Yellow,
+}
+
+fn action(light: TrafficLight) {
+    match light {
+        TrafficLight::Red =&gt; println!("停!"),
+        TrafficLight::Green =&gt; println!("行!"),
+    }
+}
+</code></pre>
+<p><strong>问题：</strong> 如果不写 <code>Yellow</code> 的处理逻辑（把上面代码直接跑），Rust 编译器会怎么做？
+A. 编译通过，匹配到 Yellow 时什么都不发生（像 JS 一样）。
+B. 编译报错，提示模式未覆盖 (Pattern not covered)。
+C. 编译通过，运行时崩溃。</p>
+<h2 id="答案-b-编译报错"><a class="header" href="#答案-b-编译报错">答案：🎯 B. 编译报错。</a></h2>
+<p>这就是 Rust 最让人安心的地方。试想一下，几个月后你的同事给 <code>TrafficLight</code> 加了一个 <code>Blue</code> 灯，如果是在 JS 里，你的代码可能还在默默地跑，遇到蓝灯就没有任何反应（产生 Bug）。但 Rust 编译器会立刻按住你：“嘿！这里有个新情况你还没处理呢！”</p>
+<p>这让重构代码变得极其安全。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="错误处理--告别-null-和-try-catch"><a class="header" href="#错误处理--告别-null-和-try-catch">错误处理 —— 告别 null 和 try-catch</a></h1>
+<p>作为前端，我们有两个“一生之敌”：</p>
+<ol>
+<li><code>Uncaught TypeError: Cannot read properties of undefined</code> (访问了空值)</li>
+<li><code>try { ... } catch (e) { ... }</code> (面条式错误处理)</li>
+</ol>
+<p>Rust 说：<strong>我们不需要 null，也不需要 Exception (异常)</strong>。 Rust 用两个普通的 <strong>枚举 (Enum)</strong> 解决了这两个问题：<code>Option</code> 和 <code>Result</code>。</p>
+<h2 id="1-option--薛定谔的盒子"><a class="header" href="#1-option--薛定谔的盒子">1. Option<t> —— 薛定谔的盒子</t></a></h2>
+<p>在 Rust 里，变量<strong>永远不可能</strong>是 null。如果你想要一个“可能为空”的值，你必须把它装进 <code>Option</code> 盒子。</p>
+<p><code>Option</code> 枚举长这样（标准库内置）：</p>
+<pre><code class="language-RUST">enum Option&lt;T&gt; {
+    Some(T), // 盒子里有东西
+    None,    // 盒子是空的 (代替 null)
+}
+</code></pre>
+<h3 id="实战对比"><a class="header" href="#实战对比">实战对比：</a></h3>
+<p>JS (TypeScript):</p>
+<pre><code class="language-TypeScript">function findUser(id: number): string | null {
+  if (id === 1) return "Gemini";
+  return null;
+}
+const user = findUser(2);
+// 你可能忘了检查 null，直接 user.toUpperCase() -&gt; 💥 报错
+</code></pre>
+<p>Rust:</p>
+<pre class="playground"><code class="language-rust">fn find_user(id: i32) -&gt; Option&lt;String&gt; {
+    if id == 1 {
+        Some(String::from("Gemini"))
+    } else {
+        None
+    }
+}
+
+fn main() {
+    let user_box = find_user(2);
+    
+    // ❌ 报错：你不能直接把 Option&lt;String&gt; 当 String 用
+    // println!("User: {}", user_box); 
+
+    // ✅ 你必须先"拆包" (使用 match)
+    match user_box {
+        Some(name) =&gt; println!("找到了用户: {}", name),
+        None =&gt; println!("查无此人"),
+    }
+}</code></pre>
+<p>Rust 强迫你在使用数据之前，必须先检查盒子是不是空的。这就从根源上消灭了 <code>undefined</code> 报错。</p>
+<h2 id="2-resultt-e--成功还是失败"><a class="header" href="#2-resultt-e--成功还是失败">2. Result&lt;T, E&gt; —— 成功还是失败？</a></h2>
+<p>对于可能<strong>报错</strong>的操作（比如读取文件、网络请求），Rust 使用 <code>Result</code>。它也是个枚举：</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Result&lt;T, E&gt; {
+    Ok(T),  // 成功，得到数据 T
+    Err(E), // 失败，得到错误 E
+}
+<span class="boring">}</span></code></pre>
+<p>这比 <code>try-catch</code> 清晰得多，因为错误处理变成了正常的逻辑流程，而不是“异常跳转”。</p>
+<h3 id="一个最受-rust-开发者喜爱的符号"><a class="header" href="#一个最受-rust-开发者喜爱的符号">一个最受 Rust 开发者喜爱的符号：<code>?</code></a></h3>
+<p>如果每一个 <code>Result</code> 都要写 <code>match</code> 来处理，代码会很啰嗦。Rust 提供了一个神级语法糖：<strong>问号操作符</strong> (<code>?</code>)。</p>
+<p>它的意思是：<strong>“如果是 Error，直接把错误抛给上一层（return Err）；如果是 Ok，把里面的数据取出来给我。”</strong></p>
+<p>这非常像 JS 中的 <code>await</code>，能把异步代码写成同步的样子；? 能把错误处理代码写成线性的样子。</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// 假设 read_file 返回 Result&lt;String, Error&gt;
+fn read_username_from_file() -&gt; Result&lt;String, std::io::Error&gt; {
+    // 打开文件，如果失败直接 return Err
+    let mut f = File::open("hello.txt")?; 
+    
+    let mut s = String::new();
+    // 读取内容，如果失败直接 return Err
+    f.read_to_string(&amp;mut s)?; 
+    
+    // 如果一路顺利，返回 Ok
+    Ok(s) 
+}
+<span class="boring">}</span></code></pre>
+<p>看到那些 <code>?</code> 了吗？它帮我们省去了无数的 <code>if err != nil</code> 或者 <code>try-catch</code>。</p>
+<h2 id="-随堂小测验-4"><a class="header" href="#-随堂小测验-4">🧠 随堂小测验</a></h2>
+<p>假设我们要写一个除法函数 <code>divide</code>。 大家都知道，除数不能为 0。如果用户传了 0，我们应该报错。</p>
+<p>请从下面三个选项中，选出<strong>最符合 Rust 风格</strong>的函数签名（Function Signature）：</p>
+<p>A. <code>fn divide(a: i32, b: i32) -&gt; i32</code> (如果除以0，让程序崩溃 panic)</p>
+<p>B. <code>fn divide(a: i32, b: i32) -&gt; Option&lt;i32&gt;</code> (如果除以0，返回 None；否则返回 Some结果)</p>
+<p>C. <code>fn divide(a: i32, b: i32) -&gt; Result&lt;i32, String&gt;</code> (如果除以0，返回 Err(“不能除以0”)；否则返回 Ok结果)</p>
+<p>(提示：B 和 C 都是合法的 Rust 风格，但如果是为了告诉调用者<strong>为什么</strong>失败，哪个更好？)</p>
+<h2 id="-c-是最佳答案"><a class="header" href="#-c-是最佳答案">🎉 C 是最佳答案。</a></h2>
+<p><strong>为什么选 C (<code>Result</code>) 而不是 B (<code>Option</code>)？</strong>
+虽然用 <code>Option</code> (返回 <code>None</code>) 来表示“除以零”也是合法的，但 <code>Result</code> 提供了一个关键的优势：它可以携带错误信息。</p>
+<ul>
+<li><code>Option&lt;T&gt;</code>：适用于“有”或“没有”的场景（比如查找数组里的元素，没找到就是 <code>None</code>，不需要解释为什么）。</li>
+<li><code>Result&lt;T, E&gt;</code>：适用于“成功”或“失败”的场景，特别是当你需要告诉调用者<strong>为什么</strong>失败时（比如“除数不能为零”、“文件不存在”、“权限不足”）。</li>
+</ul>
+<p>这样调用者不仅知道出错了，还能把错误信息打印日志或者展示给用户。</p>
+<p>我们已经攻克了 Rust 的“三大难关”：<strong>所有权、借用、生命周期</strong>（其实在借用里我们隐式地学到了，不用太担心），以及刚刚搞定的<strong>错误处理</strong>。</p>
+<p>现在，我们要进入 <strong>第三阶段：抽象与并发</strong>。这一阶段会让你的代码变得真正“高级”起来。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="trait-特质--也就是接口"><a class="header" href="#trait-特质--也就是接口">Trait (特质) —— 也就是“接口”</a></h1>
+<p>如果你熟悉 TypeScript 的 <code>interface</code>，那你理解 <strong>Trait</strong> 会非常快。</p>
+<p>Trait 定义了一种 <strong>“共同的行为”</strong>。它告诉编译器：不管你是什么类型（Struct），只要你实现了这个 Trait，你就肯定能做这件事。</p>
+<h2 id="1定义一个-trait"><a class="header" href="#1定义一个-trait">1.定义一个 Trait</a></h2>
+<p>假设我们要处理各种各样的内容：推文 (Tweet)、新闻文章 (NewsArticle)。它们内部的数据结构完全不同，但我们希望它们都能 <strong>“被总结” (Summarize)</strong>。</p>
+<p>我们可以定义一个 Trait：</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// 定义行为：任何实现了 Summary 的类型，都必须有一个 summarize 方法
+trait Summary {
+    fn summarize(&amp;self) -&gt; String;
+}
+<span class="boring">}</span></code></pre>
+<p>这就像在 TS 里写 <code>interface Summary { summarize(): string; }。</code></p>
+<h2 id="2实现-trait-impl"><a class="header" href="#2实现-trait-impl">2.实现 Trait (Impl)</a></h2>
+<p>现在我们把这个特质“贴”到具体的 Struct 上。</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Tweet {
+    username: String,
+    content: String,
+}
+
+// 为 Tweet 实现 Summary
+impl Summary for Tweet {
+    fn summarize(&amp;self) -&gt; String {
+        format!("{}: {}", self.username, self.content)
+    }
+}
+
+struct NewsArticle {
+    headline: String,
+    author: String,
+    content: String,
+}
+
+// 为 NewsArticle 实现 Summary
+impl Summary for NewsArticle {
+    fn summarize(&amp;self) -&gt; String {
+        format!("{} by {}...", self.headline, self.author)
+    }
+}
+<span class="boring">}</span></code></pre>
+<p>看，虽然 <code>Tweet</code> 和 <code>NewsArticle</code> 长得不一样，但它们都能调用 <code>.summarize()！</code></p>
+<h2 id="-随堂小测验-5"><a class="header" href="#-随堂小测验-5">🧠 随堂小测验</a></h2>
+<p>Trait 最强大的地方在于它可以作为 <strong>函数的参数类型</strong>。这实现了 <strong>多态 (Polymorphism)</strong>。</p>
+<p>假设我想写一个函数 <code>notify</code>，它的作用是把任何能“总结”的东西打印出来。</p>
+<p>在 TypeScript 里，你可能会写：</p>
+<pre><code class="language-TypeScript">function notify(item: Summary) { ... }
+</code></pre>
+<p>在 Rust 里，我们需要一种特殊的语法来表示 <strong>“任何实现了 Summary 的东西”。</strong></p>
+<p><strong>请观察下面两种写法，你觉得哪一种是合法的 Rust 语法？</strong></p>
+<p><em>A.</em></p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn notify(item: impl Summary) {
+    println!("Breaking News! {}", item.summarize());
+}
+<span class="boring">}</span></code></pre>
+<p><em>B.</em></p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn notify(item: Summary) {
+    println!("Breaking News! {}", item.summarize());
+}
+<span class="boring">}</span></code></pre>
+<p>(提示：Rust 的编译器需要在编译时确定变量的大小，Trait 本身不是一个具体的类型，而是一个行为约束。)</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="集合类型-collections--数组与哈希表"><a class="header" href="#集合类型-collections--数组与哈希表">集合类型 (Collections) —— 数组与哈希表</a></h1>
+<p>好的，搞定了抽象层，我们回到最实用的数据存储上来。 在 JS 里，我们几乎只用 Array <code>[]</code> 和 Object <code>{}</code>。 在 Rust 里，我们也有一组对应的强力工具。</p>
+<h2 id="1-vector-vect--动态数组"><a class="header" href="#1-vector-vect--动态数组">1. Vector (<code>Vec&lt;T&gt;</code>) —— 动态数组</a></h2>
+<p>Rust 里的原生数组（Array）长度是固定的（写死的）。这显然不够用。 我们在 JS 里习惯使用的那个“想塞多少就塞多少”的数组，在 Rust 里叫 <strong>Vector (向量)</strong>，简称 <code>Vec</code>。</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 创建一个空的 Vector，如果不塞数据，必须指定类型
+    let mut numbers: Vec&lt;i32&gt; = Vec::new();
+    
+    // 或者用宏来快速创建
+    let mut todos = vec!["Learn Rust", "Sleep"];
+
+    // 推入数据 (就像 JS 的 .push())
+    todos.push("Eat");
+
+    // 读取数据
+    // 注意：为了防止越界 (Index out of bounds)，Rust 推荐用 .get()
+    match todos.get(0) {
+        Some(task) =&gt; println!("首要任务: {}", task),
+        None =&gt; println!("没有任务了！"),
+    }
+}</code></pre>
+<p><strong>注意点：</strong> <code>Vec</code> 也是分配在堆（Heap）上的，所以它也遵守<strong>所有权规则</strong>。当 <code>todos</code> 离开作用域，它里面的所有字符串也会被一起清理掉。</p>
+<h2 id="2-string-vs-str--字符串的人格分裂"><a class="header" href="#2-string-vs-str--字符串的人格分裂">2. String vs &amp;str —— 字符串的“人格分裂”</a></h2>
+<p>这是前端开发者学 Rust <strong>最痛苦</strong>的地方，没有之一。</p>
+<p>在 JS 里，字符串就是字符串。 在 Rust 里，字符串有两种主要形式：</p>
+<ol>
+<li><code>String</code> (大写 S)：</li>
+</ol>
+<ul>
+<li><strong>所有者：</strong> 你拥有它。</li>
+<li><strong>可变：</strong> 可以修改、变长。</li>
+<li><strong>位置：</strong> 存储在堆 (Heap) 上。</li>
+<li>类比： 像是一个完整的 Word 文档文件。</li>
+</ul>
+<ol start="2">
+<li><code>&amp;str</code> (字符串切片/引用)：</li>
+</ol>
+<ul>
+<li><strong>借用者：</strong> 你只是借来看一眼。</li>
+<li><strong>不可变：</strong> 通常指向字面量或 String 的一部分。</li>
+<li><strong>位置：</strong> 栈 (Stack) 或 静态内存区。</li>
+<li>类比： 像是 Word 文档里选中一段文字的“高亮区域”截图。</li>
+</ul>
+<pre class="playground"><code class="language-rust">fn main() {
+    // 这是一个 &amp;str (字面量，编译进二进制文件里了，不可改)
+    let s1 = "Hello"; 
+
+    // 这是一个 String (从 &amp;str 转换而来，存堆上，可以改)
+    let mut s2 = String::from(s1); 
+    s2.push_str(", World!");
+
+    print_it(s1); // 传 &amp;str
+    print_it(&amp;s2); // &amp;s2 会自动转换成 &amp;str，这叫"解引用强制转换"
+}
+
+// 参数通常写 &amp;str，这样既能接字面量，也能接 String 的引用，通用性最强
+fn print_it(s: &amp;str) {
+    println!("{}", s);
+}</code></pre>
+<p>💡<strong>经验之谈：</strong> 如果你是写库函数的作者，参数尽量用 <code>&amp;str</code>；如果你是处理业务逻辑需要拥有数据，用 <code>String</code>。</p>
+<h2 id="3-hashmap--真正的-kv-存储"><a class="header" href="#3-hashmap--真正的-kv-存储">3. HashMap —— 真正的 KV 存储</a></h2>
+<p>这就像 JS 中的 <code>Map</code> 或者普通的 <code>Object</code>。</p>
+<pre class="playground"><code class="language-rust">use std::collections::HashMap;
+
+fn main() {
+    let mut scores = HashMap::new();
+
+    // 插入数据
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    // 获取数据
+    let team_name = String::from("Blue");
+    // .get 返回的是 Option&lt;&amp;i32&gt;，因为可能取不到
+    if let Some(score) = scores.get(&amp;team_name) {
+        println!("分数: {}", score);
+    }
+}</code></pre>
+<h2 id="-随堂小测验-6"><a class="header" href="#-随堂小测验-6">🧠 随堂小测验</a></h2>
+<p>关于 <code>String</code> 和 <code>&amp;str</code>，请看下面的代码。</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let my_name = "Gemini"; // 变量 my_name 的类型是 A
+    let my_string = my_name.to_string(); // 变量 my_string 的类型是 B
+}</code></pre>
+<p>请分别说出 A 和 B 的类型是什么？</p>
+<ol>
+<li>A: <code>String</code>, B: <code>&amp;str</code></li>
+<li>A: <code>&amp;str</code>, B: <code>String</code></li>
+<li>都是 <code>String</code></li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="前端的未来-webassembly"><a class="header" href="#前端的未来-webassembly">前端的未来 (WebAssembly)</a></h1>
+<p>为什么前端要学 Rust？除了工具链（SWC/Turbopack），更直接的应用就是 <strong>WebAssembly (WASM)。</strong></p>
+<p>WASM 允许你在浏览器里以接近原生代码的速度运行 Rust。这对于图像处理、复杂计算、游戏引擎来说是降维打击。</p>
+<h2 id="1-神器wasm-bindgen"><a class="header" href="#1-神器wasm-bindgen">1. 神器：<code>wasm-bindgen</code></a></h2>
+<p>在 Rust 里写 WASM 不需要你懂汇编。你只需要一个库：<code>wasm-bindgen</code>。它的作用就是充当“翻译官”，把 JS 的类型转成 Rust 的类型，反之亦然。</p>
+<h2 id="2-实战写一个高性能加法器"><a class="header" href="#2-实战写一个高性能加法器">2. 实战：写一个“高性能”加法器</a></h2>
+<p>假设我们要在 Rust 里写一个函数，然后在 JS 里调用它。</p>
+<h3 id="第一步rust-代码-librs"><a class="header" href="#第一步rust-代码-librs">第一步：Rust 代码 (<code>lib.rs</code>)</a></h3>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use wasm_bindgen::prelude::*;
+
+// #[wasm_bindgen] 是一个宏，它告诉编译器：
+// "把这个函数打包好，让 JS 能看懂！"
+#[wasm_bindgen]
+pub fn add(a: i32, b: i32) -&gt; i32 {
+    return a + b;
+}
+
+// 再来个更复杂的：JS 传名字，Rust 返回问候语
+#[wasm_bindgen]
+pub fn greet(name: &amp;str) -&gt; String {
+    format!("Hello, {}! From Rust!", name)
+}
+<span class="boring">}</span></code></pre>
+<h3 id="第二步编译"><a class="header" href="#第二步编译">第二步：编译</a></h3>
+<p>你不需要手写复杂的命令，只需要安装 <code>wasm-pack</code> 工具，然后运行：</p>
+<pre><code class="language-bash">wasm-pack build --target web
+</code></pre>
+<p>它会生成一个 <code>pkg</code> 文件夹，里面包含了 <code>.wasm</code> 文件和自动生成的 <code>.js</code> 胶水代码。</p>
+<h3 id="第三步前端调用-htmljs"><a class="header" href="#第三步前端调用-htmljs">第三步：前端调用 (HTML/JS)</a></h3>
+<p>现在回到我们熟悉的领域：</p>
+<pre><code class="language-javascript">&lt;script type="module"&gt;
+  // 1. 导入生成的胶水代码
+  import init, { add, greet } from './pkg/my_rust_project.js';
+
+  async function run() {
+    // 2. 初始化 WASM 模块 (加载 .wasm 文件)
+    await init();
+
+    // 3. 像调用普通 JS 函数一样调用 Rust！
+    const sum = add(5, 7);
+    console.log("Rust 算出来的结果:", sum); // 12
+
+    const msg = greet("Frontend Dev");
+    alert(msg); // "Hello, Frontend Dev! From Rust!"
+  }
+
+  run();
+&lt;/script&gt;
+</code></pre>
+<p>看见了吗？在 JS 侧，你根本感觉不到这是 Rust 写的。它就是一个普通的 <code>import</code>，普通的 <code>function</code>。但背后，是 Rust 的极致性能在支撑。</p>
+<h1 id="毕业典礼"><a class="header" href="#毕业典礼">🎉毕业典礼</a></h1>
+<p>恭喜你！你已经读完了这本《前端开发者的 Rust 入门迷你书》。</p>
+<p>回顾一下我们的旅程：</p>
+<ol>
+<li>变量：学会了 let mut 和 i32。</li>
+<li>内存：理解了所有权、借用 (&amp;) 和深拷贝 (clone)。</li>
+<li>结构：掌握了 Struct 和超强的 Enum。</li>
+<li>逻辑：用 match 替代了 switch，用 Result 替代了 try-catch。</li>
+<li>融合：最后看了一眼 WASM 的魔法。</li>
+</ol>
+<p>Rust 的学习曲线是“先苦后甜”。你会花很多时间和编译器（Borrow Checker）斗争，它会像一个严厉的老师，不停地打回你的作业。但请相信，<strong>它是在救你。</strong> 一旦代码编译通过，它通常就能完美运行，而且跑得飞快，绝不会有 <code>undefined is not a function</code> 这种低级错误。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
