@@ -1,0 +1,43 @@
+name: Deploy mdBook to GitHub Pages
+
+# 触发条件：当推送到 main 分支（或 master 分支，根据你的主分支名修改）时执行
+on:
+  push:
+    branches: [ main ]  # 若主分支是 master，改为 branches: [ master ]
+
+# 权限配置：允许 Actions 操作 gh-pages 分支
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 工作流任务
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # 运行环境：Ubuntu 最新版
+    steps:
+      # 步骤 1：拉取 GitHub 仓库代码到 Actions 服务器
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 拉取完整历史（避免编译时缺失文件）
+
+      # 步骤 2：安装 Rust 环境（mdBook 依赖 Rust）
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable  # 自动安装稳定版 Rust
+
+      # 步骤 3：安装 mdBook
+      - name: Install mdBook
+        run: cargo install mdbook
+
+      # 步骤 4：编译 mdBook 生成静态文件（输出到 book/ 目录）
+      - name: Build mdBook
+        run: mdbook build
+
+      # 步骤 5：部署静态文件到 gh-pages 分支
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4  # 成熟的 Pages 部署工具
+        with:
+          publish_dir: ./book  # 要部署的静态文件目录（mdBook 编译输出目录）
+          publish_branch: gh-pages  # 部署到的分支
+          force_orphan: true  # 强制创建孤立分支（避免历史冲突）
