@@ -23,12 +23,6 @@ jobs:
         with:
           fetch-depth: 0  # 拉取完整历史（避免编译时缺失文件）
 
-      # 配置 SSH 认证
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # 引用之前存入的私钥 Secret
-
       # 步骤 2：安装 Rust 环境（mdBook 依赖 Rust）
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable  # 自动安装稳定版 Rust
